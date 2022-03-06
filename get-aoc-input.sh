@@ -5,9 +5,8 @@
 # Expects one command line argument: the day number of the requested input file.
 # This argument must be a number between 1 and 25, with no padding.
 #
-# Additionally expects a .env file in the current directory.
-# The .env file must have the following key-value pair:
-# session=<session cookie from https://adventofcode.com/>
+# Expects a .env file in the current directory.
+# See .example_env.
 
 
 # If the number of command line arguments is wrong, exits.
@@ -24,9 +23,6 @@ if [[ ! $1 =~ $re ]]; then
 	exit
 fi
 
-# Makes the inputs sub-directory if it doesn't exist.
-mkdir -p "inputs"
-
 # Gets the Advent of Code session cookie.
 source .env
 
@@ -35,4 +31,4 @@ padded_num=$(printf "%02d" $1)
 out_file="inputs/day${padded_num}.txt"
 
 # Gets the input file of the day, and stores it in the output file.
-wget --no-cookies --header "Cookie: session=${session}" -O $out_file "https://adventofcode.com/2015/day/$1/input"
+curl "https://adventofcode.com/2015/day/$1/input" -b "session=${session}" --create-dirs -o $out_file
