@@ -4,6 +4,9 @@
 # Expects two command line arguments:
 # (1) The event year of the requested challenge. Must be a number between 2015 and 2021, with no padding.
 # (2) The day number of the requested challenge. Must be a number between 1 and 25, with no padding.
+#
+# Expects a .env file in the current directory.
+# See .example_env.
 
 
 # If the number of command line arguments is wrong, exits.
@@ -38,3 +41,10 @@ path_to_file="${path_to_dir}/day${padded_day}.cpp"
 cp "template.cpp" $path_to_file
 sed -i -e "s/<year>/$1/g" $path_to_file
 sed -i -e "s/<day>/${padded_day}/g" $path_to_file
+
+# Gets the Advent of Code session cookie.
+source .env
+
+# Gets the input file of the day, and stores it in the output file.
+out_file="inputs/$1/day${padded_day}.txt"
+curl "https://adventofcode.com/$1/day/$2/input" -b "session=${session}" --create-dirs -o $out_file
