@@ -1,2 +1,8 @@
 # Environment file
 .env
+
+# Object files
+*.o
+
+# Archive file
+*.a
