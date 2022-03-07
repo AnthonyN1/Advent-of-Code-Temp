@@ -31,7 +31,7 @@ fi
 # Specifies the path of C++ files and test file of the day.
 padded_day=$(printf "%02d" $2)
 
-day_files="src/$1/day${padded_day}/*.cpp"
+day_files="src/$1/day${padded_day}.cpp"
 test_file="inputs/$1/day${padded_day}.txt"
 
 # Compiles and runs the program.

@@ -27,9 +27,9 @@ if [[ ! $2 =~ $re ]]; then
 	exit
 fi
 
-# Create the subdirectories.
+# Creates the subdirectories.
 padded_day=$(printf "%02d" $2)
-path_to_dir="src/$1/day${padded_day}"
+path_to_dir="src/$1"
 
 mkdir -p $path_to_dir
 
