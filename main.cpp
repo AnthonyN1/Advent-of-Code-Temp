@@ -30,7 +30,7 @@ int main(int argc, char* argv[]){
 
 	std::vector<std::string> input;
 	std::string line;
-	while(inStr >> line)
+	while(std::getline(inStr, line))
 		input.push_back(line);
 	
 	// Determines which part to execute.
