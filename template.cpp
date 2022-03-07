@@ -3,7 +3,6 @@
 	Author: Anthony Nool (AnthonyN1)
 */
 
-#include <cassert>
 #include <iostream>
 #include <string>
 #include <vector>
