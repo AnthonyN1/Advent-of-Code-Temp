@@ -6,11 +6,18 @@
 #ifndef __point_h_
 #define __point_h_
 
+#include <string>
+
 
 class Point{
 	public:
-		// Constructor
+		// Constructors
 		Point(long long x=0, long long y=0): x_(x), y_(y) {}
+		Point(const std::string &coord);
+
+		// Observers
+		long long getX() const { return x_; }
+		long long getY() const { return y_; }
 
 		// Mutator
 		void shift(long long deltaX, long long deltaY);
