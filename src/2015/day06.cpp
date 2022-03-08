@@ -16,7 +16,7 @@
 	Parses one line of instructions into an operation and a pair of Points.
 */
 void parseInstruction(const std::string &str, char &op, Point &start, Point &end){
-	// Instantiates a stringstrean to parse the instruction.
+	// Instantiates a stringstream to parse the instruction.
 	std::stringstream ss(str);
 
 	// Determines the operation from the first 1-2 strings.
@@ -92,6 +92,7 @@ void partOne(const std::vector<std::string> &input){
 		executeInstructionPartOne(grid, op, start, end);
 	}
 
+
 	std::cout << grid.countMatching(true) << std::endl;
 }
 
@@ -104,5 +105,6 @@ void partTwo(const std::vector<std::string> &input){
 		executeInstructionPartOne(grid, op, start, end);
 	}
 
+	
 	std::cout << grid.sum() << std::endl;
 }
