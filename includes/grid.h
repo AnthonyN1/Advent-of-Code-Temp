@@ -1,3 +1,8 @@
+/*
+	Advent of Code - Grid Header
+	Author: Anthony Nool (AnthonyN1)
+*/
+
 #ifndef __grid_h_
 #define __grid_h_
 
@@ -9,7 +14,7 @@ template <class T> class Grid{
 		Grid(const Grid &g);
 		~Grid();
 
-		// Observer
+		// Observers
 		const T & at(unsigned int r, unsigned int c) const { return grid_[r][c]; }
 		unsigned long long countMatching(const T &val) const;
 		T sum() const;
