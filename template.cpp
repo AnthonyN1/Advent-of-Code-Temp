@@ -17,9 +17,15 @@ void helper(){
 
 
 void partOne(const std::vector<std::string> &input){
+	// Start coding here.
+
+
 	std::cout << "Part one answer" << std::endl;
 }
 
 void partTwo(const std::vector<std::string> &input){
+	// Start coding here.
+
+
 	std::cout << "Part two answer" << std::endl;
 }
