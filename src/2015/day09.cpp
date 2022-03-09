@@ -55,7 +55,7 @@ void partOne(const std::vector<std::string> &input){
 		parseInput(g, str);
 	
 	// Variation of Traveling Salesman Problem (NP-Complete).
-	// Cycle through all possible permutations (brute-force).
+	// Cycles through all possible permutations (brute-force).
 	std::vector<std::string> vertices = g.getVertices();
 	std::sort(vertices.begin(), vertices.end());
 
