@@ -22,6 +22,10 @@ void parseInput(Graph &g, const std::string &str){
 
 	unsigned long long weight = std::stoi(parts[1]);
 
+	// Adds the vertices to the graph.
+	g.addVertex(verts[0]);
+	g.addVertex(verts[1]);
+
 	// Adds the two directed edges (one undirected edge) to the graph.
 	g.addEdge(verts[0], verts[1], weight);
 	g.addEdge(verts[1], verts[0], weight);

@@ -30,7 +30,7 @@ std::vector<std::string> Graph::getVertices() const {
 
 
 //==================================================//
-//                     Mutator                      //
+//                     Mutators                     //
 //==================================================//
 /*
 	Adds an edge between v1 and v2 with weight weight to the graph.
@@ -38,8 +38,12 @@ std::vector<std::string> Graph::getVertices() const {
 void Graph::addEdge(const std::string &v1, const std::string &v2, unsigned long long weight){
 	adjList_[v1].insert(v2);
 	weights_[std::make_pair(v1, v2)] = weight;
+}
 
-	// If v2 doesn't has a current out-degree of 0, adds it to the adjacency list.
-	if(adjList_.find(v2) == adjList_.end())
-		adjList_[v2] = std::set<std::string>();
+/*
+	Adds a vertex v to the graph.
+*/
+void Graph::addVertex(const std::string &v){
+	if(adjList_.find(v) == adjList_.end())
+		adjList_[v] = std::set<std::string>();
 }
