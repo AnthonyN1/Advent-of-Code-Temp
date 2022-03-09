@@ -35,7 +35,7 @@ std::vector<std::string> Graph::getVertices() const {
 /*
 	Adds an edge between v1 and v2 with weight weight to the graph.
 */
-void Graph::addEdge(const std::string &v1, const std::string &v2, unsigned long long weight){
+void Graph::addEdge(const std::string &v1, const std::string &v2, long long weight){
 	adjList_[v1].insert(v2);
 	weights_[std::make_pair(v1, v2)] = weight;
 }

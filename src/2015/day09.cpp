@@ -20,7 +20,7 @@ void parseInput(Graph &g, const std::string &str){
 	std::vector<std::string> parts = Utils::split(str, " = ");
 	std::vector<std::string> verts = Utils::split(parts[0], " to ");
 
-	unsigned long long weight = std::stoi(parts[1]);
+	long long weight = std::stoi(parts[1]);
 
 	// Adds the vertices to the graph.
 	g.addVertex(verts[0]);
@@ -35,8 +35,8 @@ void parseInput(Graph &g, const std::string &str){
 	Returns the cost of the path of g in order of verts.
 	Returns errorVal if the path isn't possible.
 */
-unsigned long long getPathCost(const Graph &g, const std::vector<std::string> &verts, unsigned long long errorVal){
-	unsigned long long cost = 0;
+long long getPathCost(const Graph &g, const std::vector<std::string> &verts, long long errorVal){
+	long long cost = 0;
 	for(unsigned int i = 0; i < verts.size() - 1; ++i){
 		if(g.hasEdge(verts[i], verts[i + 1])){
 			cost += g.getWeight(verts[i], verts[i + 1]);
@@ -59,10 +59,10 @@ void partOne(const std::vector<std::string> &input){
 	std::vector<std::string> vertices = g.getVertices();
 	std::sort(vertices.begin(), vertices.end());
 
-	unsigned long long lowest = std::numeric_limits<unsigned long long>::max();
+	long long lowest = std::numeric_limits<long long>::max();
 	do{
 		// Finds the minimum cost path.
-		lowest = std::min(lowest, getPathCost(g, vertices, std::numeric_limits<unsigned long long>::max()));
+		lowest = std::min(lowest, getPathCost(g, vertices, std::numeric_limits<long long>::max()));
 	} while(std::next_permutation(vertices.begin(), vertices.end()));
 
 
@@ -79,7 +79,7 @@ void partTwo(const std::vector<std::string> &input){
 	std::vector<std::string> vertices = g.getVertices();
 	std::sort(vertices.begin(), vertices.end());
 
-	unsigned long long highest = 0;
+	long long highest = 0;
 	do{
 		// Finds the maximum cost path.
 		highest = std::max(highest, getPathCost(g, vertices, 0));
