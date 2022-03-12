@@ -6,6 +6,8 @@
 #ifndef __grid_h_
 #define __grid_h_
 
+#include <algorithm>
+
 
 template <class T> class Grid{
 	public:
@@ -82,9 +84,7 @@ template <class T> Grid<T>::~Grid(){
 template <class T> unsigned long long Grid<T>::countMatching(const T &val) const {
 	unsigned long long matching = 0;
 	for(unsigned int r = 0; r < rows_; ++r)
-		for(unsigned int c = 0; c < cols_; ++c)
-			if(grid_[r][c] == val)
-				++matching;
+		matching += std::count(grid_[r], grid_[r] + cols_, val);
 	
 	return matching;
 }
