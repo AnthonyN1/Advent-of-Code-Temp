@@ -13,7 +13,6 @@ class Point{
 	public:
 		// Constructors
 		Point(long long x=0, long long y=0): x_(x), y_(y) {}
-		Point(const std::string &coord);
 
 		// Observers
 		long long getX() const { return x_; }

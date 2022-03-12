@@ -10,42 +10,30 @@
 
 #include "../../includes/grid.h"
 #include "../../includes/point.h"
+#include "../../includes/utils.h"
 
 
 /*
 	Parses one line of instructions into an operation and a pair of Points.
 */
 void parseInstruction(const std::string &str, char &op, Point &start, Point &end){
-	// Instantiates a stringstream to parse the instruction.
-	std::stringstream ss(str);
+	std::vector<std::string> parts = Utils::split(str, " ");
 
 	// Determines the operation from the first 1-2 strings.
-	std::string opStr;
-	ss >> opStr;
-
-	if(opStr == "toggle"){
+	if(parts.size() == 4){
 		op = 'S';
 	} else{
-		std::string opStr2;
-		ss >> opStr2;
-
-		if(opStr2 == "off") op = 'O';
+		if(parts[1] == "off") op = 'O';
 		else op = 'I';
 	}
 
 	// Determines the start point using the next coordinate.
-	std::string p1;
-	ss >> p1;
-	start = Point(p1);
-
-	// Throws away the "through".
-	std::string through;
-	ss >> through;
+	std::vector<std::string> p1 = Utils::split(parts[parts.size() - 3], ",");
+	start = Point(std::stoi(p1[0]), std::stoi(p1[1]));
 
 	// Determines the end point using the last coordinate.
-	std::string p2;
-	ss >> p2;
-	end = Point(p2);
+	std::vector<std::string> p2 = Utils::split(parts[parts.size() - 1], ",");
+	end = Point(std::stoi(p2[0]), std::stoi(p2[1]));
 }
 
 /*
