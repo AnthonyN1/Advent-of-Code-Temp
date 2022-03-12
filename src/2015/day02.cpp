@@ -8,18 +8,19 @@
 #include <string>
 #include <vector>
 
+#include "../../includes/utils.h"
+
 
 /*
 	Gets the length, width, height of a dimension string.
 	str is of the form <l>x<w>x<h>.
 */
 void getDimensions(const std::string &str, unsigned long long &l, unsigned long long &w, unsigned long long &h){
-	unsigned int firstX = str.find_first_of('x');
-	unsigned int lastX = str.find_last_of('x');
+	std::vector<std::string> parts = Utils::split(str, "x");
 
-	l = std::stoi(str.substr(0, firstX));
-	w = std::stoi(str.substr(firstX + 1, lastX - firstX - 1));
-	h = std::stoi(str.substr(lastX + 1));
+	l = std::stoi(parts[0]);
+	w = std::stoi(parts[1]);
+	h = std::stoi(parts[2]);
 }
 
 
