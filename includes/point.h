@@ -11,7 +11,7 @@
 
 class Point{
 	public:
-		// Constructors
+		// Constructor
 		Point(long long x=0, long long y=0): x_(x), y_(y) {}
 
 		// Observers
