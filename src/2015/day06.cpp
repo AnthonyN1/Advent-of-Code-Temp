@@ -39,7 +39,7 @@ void parseInstruction(const std::string &str, char &op, Point &start, Point &end
 /*
 	Executes the instruction, following the interpretation of Part One.
 */
-void executeInstructionPartOne(Grid<bool> &grid, char op, const Point &start, const Point &end){
+void executeInstruction(Grid<bool> &grid, char op, const Point &start, const Point &end){
 	for(unsigned int r = start.getX(); r <= end.getX(); ++r){
 		for(unsigned int c = start.getY(); c <= end.getY(); ++c){
 			switch(op){
@@ -54,7 +54,7 @@ void executeInstructionPartOne(Grid<bool> &grid, char op, const Point &start, co
 /*
 	Executes the instruction, following the interpretation of Part Two.
 */
-void executeInstructionPartOne(Grid<unsigned long long> &grid, char op, const Point &start, const Point &end){
+void executeInstruction(Grid<unsigned long long> &grid, char op, const Point &start, const Point &end){
 	for(unsigned int r = start.getX(); r <= end.getX(); ++r){
 		for(unsigned int c = start.getY(); c <= end.getY(); ++c){
 			switch(op){
@@ -77,7 +77,7 @@ void partOne(const std::vector<std::string> &input){
 		char op;
 		Point start, end;
 		parseInstruction(str, op, start, end);
-		executeInstructionPartOne(grid, op, start, end);
+		executeInstruction(grid, op, start, end);
 	}
 
 
@@ -90,7 +90,7 @@ void partTwo(const std::vector<std::string> &input){
 		char op;
 		Point start, end;
 		parseInstruction(str, op, start, end);
-		executeInstructionPartOne(grid, op, start, end);
+		executeInstruction(grid, op, start, end);
 	}
 
 	
