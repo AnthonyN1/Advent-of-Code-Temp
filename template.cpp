@@ -8,8 +8,14 @@
 #include <vector>
 
 
-/*
-	Helper function.
+/**
+ * @brief Helper function.
+ * 
+ * @param abc  param 1
+ * @param 123  param 2
+ * 
+ * @return something.
+ * 
 */
 void helper(){
 	return;
