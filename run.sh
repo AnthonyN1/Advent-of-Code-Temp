@@ -2,7 +2,7 @@
 
 # Runs a C++ executable to compute the answer for an Advent of Code challenge.
 # Expects three command line arguments:
-# (1) The event year of the requested challenge. Must be a number between 2015 and 2021, with no padding.
+# (1) The event year of the requested challenge. Must be a number between 2015 and 2022, with no padding.
 # (2) The day number of the requested challenge. Must be a number between 1 and 25, with no padding.
 # (3) The part number of the event day. Must be either 1 or 2.
 
@@ -15,9 +15,9 @@ if [[ $# -ne 3 ]]; then
 fi
 
 # If the year is invalid, exits.
-re="^20(1[5-9]|2[0-1])$"
+re="^20(1[5-9]|2[0-2])$"
 if [[ ! $1 =~ $re ]]; then
-	echo "ERROR: <year> must be an integer between 2015 and 2021, inclusive"
+	echo "ERROR: <year> must be an integer between 2015 and 2022, inclusive"
 	exit
 fi
 
@@ -35,4 +35,4 @@ day_files="src/$1/day${padded_day}.cpp"
 test_file="inputs/$1/day${padded_day}.txt"
 
 # Compiles and runs the program.
-g++ -g $day_files main.cpp "includes/aoc.a" -o main.exe -Wall -Wextra && ./main.exe $test_file $3 && rm main.exe
+g++ -g $day_files main.cpp "includes/aoc.a" -o main.exe -Wall -Wextra && ./main.exe $test_file $3
