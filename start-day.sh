@@ -2,7 +2,7 @@
 
 # Creates subdirectories and a starter file for an Advent of Code day.
 # Expects two command line arguments:
-# (1) The event year of the requested challenge. Must be a number between 2015 and 2021, with no padding.
+# (1) The event year of the requested challenge. Must be a number between 2015 and 2022, with no padding.
 # (2) The day number of the requested challenge. Must be a number between 1 and 25, with no padding.
 #
 # Expects a .env file in the current directory.
@@ -17,9 +17,9 @@ if [[ $# -ne 2 ]]; then
 fi
 
 # If the year is invalid, exits.
-re="^20(1[5-9]|2[0-1])$"
+re="^20(1[5-9]|2[0-2])$"
 if [[ ! $1 =~ $re ]]; then
-	echo "ERROR: <year> must be an integer between 2015 and 2021, inclusive"
+	echo "ERROR: <year> must be an integer between 2015 and 2022, inclusive"
 	exit
 fi
 
