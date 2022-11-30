@@ -48,3 +48,6 @@ source .env
 # Gets the input file of the day, and stores it in the output file.
 out_file="inputs/$1/day${padded_day}.txt"
 curl "https://adventofcode.com/$1/day/$2/input" -b "session=${session}" --create-dirs -o $out_file
+
+# Starts VS Code.
+code $path_to_file
