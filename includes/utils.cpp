@@ -9,6 +9,32 @@
 
 #include "utils.h"
 
+/**
+ * @brief Decrypts a string using the Shift Cipher.
+ * 
+ * @param encrypted  the encrypted string
+ * @param shift      the number of times to rotate each character
+ * 
+ * @return the decrypted string.
+ * 
+*/
+std::string Utils::decryptShiftCipher(const std::string &encrypted, unsigned long long shift){
+	unsigned int numToShift = shift % 26;
+	
+	std::vector<char> decrypted;
+	for(char ch : encrypted){
+		char chDecrypted = ch;
+		for(unsigned int i = 0; i < numToShift; ++i){
+			if(chDecrypted == 'z') chDecrypted = 'a';
+			else chDecrypted += 1;
+		}
+
+		decrypted.push_back(chDecrypted);
+	}
+
+	return std::string(decrypted.begin(), decrypted.end());
+}
+
 
 /**
  * @param str  the string to parse
