@@ -7,6 +7,10 @@
 #define __point_h_
 
 
+/**
+ * @brief a 2D coordinate point.
+ * 
+*/
 class Point{
 	public:
 		// Constructors

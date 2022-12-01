@@ -10,6 +10,10 @@
 #include <vector>
 
 
+/**
+ * @brief A collection of miscellaneous general utility functions.
+ * 
+*/
 namespace Utils{
 	bool isNumber(const std::string &str);
 	std::vector<std::string> split(const std::string &str, const std::string &delim);
