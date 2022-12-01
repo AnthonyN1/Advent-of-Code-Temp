@@ -17,8 +17,21 @@
 class MaybeTriangle{
 	public:
 		MaybeTriangle(unsigned long long s1=0, unsigned long long s2=0, unsigned long long s3=0): s1_(s1), s2_(s2), s3_(s3) {}
+		bool isTriangle() const;
 		unsigned long long s1_, s2_, s3_;
 };
+
+/**
+ * @return true if the current MaybeTriangle is a triangle, and false otherwise.
+ * 
+*/
+bool MaybeTriangle::isTriangle() const {
+	if(s1_ + s2_ <= s3_) return false;
+	if(s2_ + s3_ <= s1_) return false;
+	if(s3_ + s1_ <= s2_) return false;
+
+	return true;
+}
 
 
 /**
@@ -80,27 +93,16 @@ std::vector<MaybeTriangle> parseIntoTrianglesPart2(const std::vector<std::string
 	return triangles;
 }
 
-/**
- * @param mt  the MaybeTriangle to look at
- * 
- * @return true if the MaybeTriangle is a triangle, and false otherwise.
- * 
-*/
-bool possible(const MaybeTriangle &mt){
-	if(mt.s1_ + mt.s2_ <= mt.s3_) return false;
-	if(mt.s2_ + mt.s3_ <= mt.s1_) return false;
-	if(mt.s3_ + mt.s1_ <= mt.s2_) return false;
-
-	return true;
-}
-
 
 void partOne(const std::vector<std::string> &input){
 	// Parses the input into MaybeTriangles (by row).
 	std::vector<MaybeTriangle> triangles = parseIntoTrianglesPart1(input);
 
 	// Counts the number of possible triangles.
-	unsigned long long numPossible = std::count_if(triangles.begin(), triangles.end(), possible);
+	unsigned long long numPossible = 0;
+	for(const MaybeTriangle &mt : triangles)
+		if(mt.isTriangle())
+			++numPossible;
 
 
 	std::cout << numPossible << std::endl;
@@ -111,7 +113,10 @@ void partTwo(const std::vector<std::string> &input){
 	std::vector<MaybeTriangle> triangles = parseIntoTrianglesPart2(input);
 
 	// Counts the number of possible triangles.
-	unsigned long long numPossible = std::count_if(triangles.begin(), triangles.end(), possible);
+	unsigned long long numPossible = 0;
+	for(const MaybeTriangle &mt : triangles)
+		if(mt.isTriangle())
+			++numPossible;
 
 
 	std::cout << numPossible << std::endl;
