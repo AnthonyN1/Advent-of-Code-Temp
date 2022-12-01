@@ -24,6 +24,8 @@ template <class T> class Grid{
 		// Accessors
 		const T & at(unsigned int r, unsigned int c) const { return grid_[r][c]; }
 		unsigned long long countMatching(const T &val) const;
+		unsigned int getCols() const { return cols_; }
+		unsigned int getRows() const { return rows_; }
 		T sum() const;
 
 		// Modifiers
