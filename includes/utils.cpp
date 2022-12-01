@@ -72,7 +72,7 @@ std::string Utils::join(const std::vector<std::string> &strs, const std::string 
  * @param str    the string to split
  * @param delim  the delimiting character
  * 
- * @return a collection of substrings created by splitting the string by the delimiting string
+ * @return a collection of substrings created by splitting the string by the delimiting string.
  * 
 */
 std::vector<std::string> Utils::split(const std::string &str, const std::string &delim){
