@@ -4,6 +4,7 @@
 */
 
 #include <algorithm>
+#include <numeric>
 
 
 template <class T> Grid<T>::Grid(unsigned int r, unsigned int c, const T &init){
@@ -39,8 +40,7 @@ template <class T> unsigned long long Grid<T>::countMatching(const T &val) const
 template <class T> T Grid<T>::sum() const {
 	T sum = T();
 	for(unsigned int r = 0; r < rows_; ++r)
-		for(unsigned int c = 0; c < cols_; ++c)
-			sum += grid_[r][c];
+		sum = std::accumulate(grid_[r], grid_[r] + cols_, sum);
 	
 	return sum;
 }
