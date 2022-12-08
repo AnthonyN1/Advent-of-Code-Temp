@@ -68,4 +68,13 @@ class Point{
 */
 bool operator<(const Point &p1, const Point &p2);
 
+/**
+ * @param p1  the first Point
+ * @param p2  the second Point
+ * 
+ * @return true if p1 is the same location as p2, and false otherwise.
+ * 
+*/
+bool operator==(const Point &p1, const Point &p2);
+
 #endif
