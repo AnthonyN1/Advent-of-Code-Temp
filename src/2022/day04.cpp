@@ -12,10 +12,40 @@
 
 class Range{
 	public:
+		//==================================================//
+		//                   Constructors                   //
+		//==================================================//
+		/**
+		 * @brief Constructs a Range with start and end values of start and end, respectively.
+		 * 
+		 * @param start  the start of the range
+		 * @param end    the end of the range
+		 * 
+		*/
 		Range(unsigned long long start, unsigned long long end): start_(start), end_(end) {}
+
+
+		//==================================================//
+		//                     Accessors                    //
+		//==================================================//
+		/**
+		 * @param r  the other range
+		 * 
+		 * @return true if the current range contains the other range, and false otherwise.
+		 * 
+		*/
 		bool contains(const Range &r) const { return start_ <= r.start_ && r.end_ <= end_; }
+
+		/**
+		 * @param r  the other range
+		 * 
+		 * @return true if the current and other range overlap, and false otherwise.
+		 * 
+		*/
 		bool overlaps(const Range &r) const { return (r.start_ <= start_ && start_ <= r.end_) || (r.start_ <= end_ && end_ <= r.end_) || contains(r); }
-		unsigned long long start_, end_;
+	private:
+		unsigned long long start_;		/** The start of the range. */
+		unsigned long long end_;		/** The end of the range. */
 };
 
 
