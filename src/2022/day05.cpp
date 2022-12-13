@@ -16,11 +16,11 @@ typedef std::vector<char> crate_stack;
 
 
 /**
- * @brief Separates the input into a diagram of crate stacks and a collection of moving instructions.
+ * @brief Separates the puzzle input into a diagram of crate stacks and a vector of moving instructions.
  * 
- * @param input    the original input
- * @param diagram  the collection to store the diagram of crate stacks
- * @param moves    the collection to store the moving instructions
+ * @param input    the puzzle input
+ * @param diagram  the diagram of crate stacks as a vector
+ * @param moves    the moving instructions as a vector
  * 
 */
 void separateInput(const std::vector<std::string> &input, std::vector<std::string> &diagram, std::vector<std::string> &moves){
@@ -40,11 +40,11 @@ void separateInput(const std::vector<std::string> &input, std::vector<std::strin
 /**
  * @brief Parses a diagram of crate stacks.
  * 
- * @param input   the diagram of crate stacks
+ * @param input   the diagram of crate stacks as a vector
  * @param stacks  the collection of crate_stacks to populate
  * 
 */
-void parse(const std::vector<std::string> &input, std::vector<crate_stack> &stacks){
+void parseDiagram(const std::vector<std::string> &input, std::vector<crate_stack> &stacks){
 	// Calculates the number of stacks.
 	// The size of each line is equal to (3 characters per stack) * (number of stacks) + (1 character delimiter) * (number of stacks - 1).
 	unsigned int numStacks = (input[0].size() + 1) / 4;
@@ -63,6 +63,23 @@ void parse(const std::vector<std::string> &input, std::vector<crate_stack> &stac
 	for(crate_stack &cs : stacks)
 		std::reverse(cs.begin(), cs.end());
 }
+
+/**
+ * @brief Parses the puzzle input.
+ * 
+ * @param input      the puzzle input
+ * @param parsedOne  the first half of the input, parsed into a convenient data structure
+ * @param parsedTwo  the second half of the input, parsed into a convenient data structure
+ * 
+*/
+void parseInput(const std::vector<std::string> &input, std::vector<crate_stack> &parsedOne, std::vector<std::string> &parsedTwo){
+	std::vector<std::string> diagram;
+	separateInput(input, diagram, parsedTwo);
+
+	// Parses the diagram into a collection of stacks.
+	parseDiagram(diagram, parsedOne);
+}
+
 
 /**
  * @brief Moves crates on stacks one by one.
@@ -107,12 +124,10 @@ void moveTogether(std::vector<crate_stack> &stacks, const std::string &input){
 
 
 void partOne(const std::vector<std::string> &input){
-	std::vector<std::string> diagram, moves;
-	separateInput(input, diagram, moves);
-
-	// Parses the diagram into a collection of stacks.
 	std::vector<crate_stack> stacks;
-	parse(diagram, stacks);
+	std::vector<std::string> moves;
+	parseInput(input, stacks, moves);
+
 
 	// Moves the crates.
 	for(const std::string &move : moves)
@@ -130,12 +145,10 @@ void partOne(const std::vector<std::string> &input){
 }
 
 void partTwo(const std::vector<std::string> &input){
-	std::vector<std::string> diagram, moves;
-	separateInput(input, diagram, moves);
-
-	// Parses the diagram into a collection of stacks.
 	std::vector<crate_stack> stacks;
-	parse(diagram, stacks);
+	std::vector<std::string> moves;
+	parseInput(input, stacks, moves);
+	
 
 	// Moves the crates.
 	for(const std::string &move : moves)
