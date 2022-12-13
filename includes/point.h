@@ -6,6 +6,8 @@
 #ifndef __point_h_
 #define __point_h_
 
+#include <cmath>
+
 
 /**
  * @brief a 2D coordinate point.
@@ -28,6 +30,14 @@ class Point{
 		//==================================================//
 		//                     Accessors                    //
 		//==================================================//
+		/**
+		 * @param other  the other Point
+		 * 
+		 * @return true if the current and other Points are touching (diagonals included), and false otherwise.
+		 * 
+		*/
+		bool isTouching(const Point &other) const { return (abs(x_ - other.x_) <= 1) && (abs(y_ - other.y_) <= 1); }
+
 		/**
 		 * @return the x-coordinate of the point.
 		 * 

@@ -46,17 +46,6 @@ void parseInput(const std::vector<std::string> &input, std::vector<std::pair<cha
 
 
 /**
- * @param p1  the first Point
- * @param p2  the second Point
- * 
- * @return true if p1 and p2 are touching (diagonals included), and false otherwise.
- * 
-*/
-bool touching(const Point &p1, const Point &p2){
-	return (abs(p1.getX() - p2.getX()) <= 1) && (abs(p1.getY() - p2.getY()) <= 1);
-}
-
-/**
  * @brief Moves currTail such that currHead and currTail become touching.
  * 
  * @param currHead  the head of the sub-rope with two knots
@@ -68,7 +57,7 @@ void moveTail(const Point &currHead, Point &currTail){
 	int xDistance = currHead.getX() - currTail.getX();
 	int yDistance = currHead.getY() - currTail.getY();
 
-	if(touching(currHead, currTail)){
+	if(currHead.isTouching(currTail)){
 		// If the head and tail are already touching, the tail doesn't need to be shifted.
 		return;
 	} else if(xDistance == 0){
