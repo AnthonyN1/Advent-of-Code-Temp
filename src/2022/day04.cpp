@@ -25,7 +25,6 @@ class Range{
 		*/
 		Range(unsigned long long start, unsigned long long end): start_(start), end_(end) {}
 
-
 		//==================================================//
 		//                     Accessors                    //
 		//==================================================//

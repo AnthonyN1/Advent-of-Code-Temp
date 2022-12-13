@@ -46,7 +46,6 @@ template <class V> class Graph{
 		*/
 		bool hasEdge(const V &v1, const V &v2) const { return adjList_.at(v1).find(v2) != adjList_.at(v1).end(); }
 
-
 		//==================================================//
 		//                     Modifiers                    //
 		//==================================================//
