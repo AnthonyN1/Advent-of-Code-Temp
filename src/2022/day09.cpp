@@ -7,6 +7,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <utility>
 #include <vector>
 
 #include "../../includes/grid.h"
@@ -24,6 +25,24 @@ const std::map<char, Point> dirToShift = {
 	{'L', Point(-1, 0)}, 
 	{'R', Point(1, 0)}
 };
+
+
+/**
+ * @brief Parses the puzzle input.
+ * 
+ * @param input   the puzzle input
+ * @param parsed  the input, parsed into a convenient data structure
+ * 
+*/
+void parseInput(const std::vector<std::string> &input, std::vector<std::pair<char, unsigned int>> &parsed){
+	for(const std::string &line : input){
+		std::vector<std::string> parts = Utils::split(line, " ");
+		char dir = parts[0][0];
+		unsigned int numSpaces = std::stoi(parts[1]);
+
+		parsed.push_back(std::make_pair(dir, numSpaces));
+	}
+}
 
 
 /**
@@ -92,6 +111,10 @@ void move(std::vector<Point> &knots, char dir, Grid<char> &visited, unsigned int
 
 
 void partOne(const std::vector<std::string> &input){
+	std::vector<std::pair<char, unsigned int>> instructions;
+	parseInput(input, instructions);
+
+
 	// Chooses a large enough grid size, and places the start position in the middle.
 	Grid<char> visited(1001, 1001, '.');
 	std::vector<Point> knots(2, Point(500, 500));
@@ -99,14 +122,9 @@ void partOne(const std::vector<std::string> &input){
 	// Updates the grid to note the position of the tail.
 	visited.update(knots[knots.size() - 1].getY(), knots[knots.size() - 1].getX(), '#');
 
-	// Follows the instructions on each line.
-	for(const std::string &line : input){
-		std::vector<std::string> instructions = Utils::split(line, " ");
-		char dir = instructions[0][0];
-		unsigned int numSpaces = std::stoi(instructions[1]);
-
-		move(knots, dir, visited, numSpaces);
-	}
+	// Follows each instruction.
+	for(const std::pair<char, unsigned int> &instruction : instructions)
+		move(knots, instruction.first, visited, instruction.second);
 
 	// Counts the number of cells the tail has visited.
 	unsigned long long numVisited = visited.countMatching('#');
@@ -116,6 +134,10 @@ void partOne(const std::vector<std::string> &input){
 }
 
 void partTwo(const std::vector<std::string> &input){
+	std::vector<std::pair<char, unsigned int>> instructions;
+	parseInput(input, instructions);
+
+
 	// Chooses a large enough grid size, and places the start position in the middle.
 	Grid<char> visited(1001, 1001, '.');
 	std::vector<Point> knots(10, Point(500, 500));
@@ -123,14 +145,9 @@ void partTwo(const std::vector<std::string> &input){
 	// Updates the grid to note the position of the tail.
 	visited.update(knots[knots.size() - 1].getY(), knots[knots.size() - 1].getX(), '#');
 
-	// Follows the instructions on each line.
-	for(const std::string &line : input){
-		std::vector<std::string> instructions = Utils::split(line, " ");
-		char dir = instructions[0][0];
-		unsigned int numSpaces = std::stoi(instructions[1]);
-
-		move(knots, dir, visited, numSpaces);
-	}
+	// Follows each instruction.
+	for(const std::pair<char, unsigned int> &instruction : instructions)
+		move(knots, instruction.first, visited, instruction.second);
 
 	// Counts the number of cells the tail has visited.
 	unsigned long long numVisited = visited.countMatching('#');
