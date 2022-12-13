@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <string>
+#include <utility>
 #include <vector>
 
 #include "../../includes/utils.h"
@@ -49,43 +50,53 @@ class Range{
 };
 
 
-void partOne(const std::vector<std::string> &input){
-	// Counts the number of assignment pairs that are nested.
-	unsigned long long count = 0;
+/**
+ * @brief Parses the puzzle input.
+ * 
+ * @param input   the puzzle input
+ * @param parsed  the input, parsed into a convenient data structure
+ * 
+*/
+void parseInput(const std::vector<std::string> &input, std::vector<std::pair<Range, Range>> &parsed){
 	for(const std::string &line : input){
 		std::vector<std::string> pairs = Utils::split(line, ",");
 
-		// Constructs the two assignment ranges.
 		std::vector<std::string> r1Str = Utils::split(pairs[0], "-");
 		Range r1(std::stoi(r1Str[0]), std::stoi(r1Str[1]));
 
 		std::vector<std::string> r2Str = Utils::split(pairs[1], "-");
 		Range r2(std::stoi(r2Str[0]), std::stoi(r2Str[1]));
 
-		// Checks if one range is contained in the other.
-		if(r1.contains(r2) || r2.contains(r1)) ++count;
+		parsed.push_back(std::make_pair(r1, r2));
 	}
+}
+
+
+void partOne(const std::vector<std::string> &input){
+	std::vector<std::pair<Range, Range>> ranges;
+	parseInput(input, ranges);
+
+
+	// Counts the number of assignment pairs that are nested.
+	unsigned long long count = 0;
+	for(const std::pair<Range, Range> &rangePair : ranges)
+		if(rangePair.first.contains(rangePair.second) || rangePair.second.contains(rangePair.first))
+			++count;
 
 
 	std::cout << count << std::endl;
 }
 
 void partTwo(const std::vector<std::string> &input){
+	std::vector<std::pair<Range, Range>> ranges;
+	parseInput(input, ranges);
+
+	
 	// Counts the number of assignment pairs that overlap.
 	unsigned long long count = 0;
-	for(const std::string &line : input){
-		std::vector<std::string> pairs = Utils::split(line, ",");
-
-		// Constructs the two assignment ranges.
-		std::vector<std::string> r1Str = Utils::split(pairs[0], "-");
-		Range r1(std::stoi(r1Str[0]), std::stoi(r1Str[1]));
-
-		std::vector<std::string> r2Str = Utils::split(pairs[1], "-");
-		Range r2(std::stoi(r2Str[0]), std::stoi(r2Str[1]));
-
-		// Checks if the two ranges overlap.
-		if(r1.overlaps(r2)) ++count;
-	}
+	for(const std::pair<Range, Range> &rangePair : ranges)
+		if(rangePair.first.overlaps(rangePair.second))
+			++count;
 
 
 	std::cout << count << std::endl;
