@@ -22,6 +22,39 @@ enum Result { win = 6, draw = 3, lose = 0 };
 
 
 /**
+ * @brief Parses the puzzle input for part one.
+ * 
+ * @param input   the puzzle input
+ * @param parsed  the input, parsed into a convenient data structure
+ * 
+*/
+void parseInputPartOne(const std::vector<std::string> &input, std::vector<std::pair<RPS, RPS>> &parsed){
+	for(const std::string &line : input){
+		std::pair<RPS, RPS> p;
+		p.first = static_cast<RPS>(line[0] - 'A' + 1);
+		p.second = static_cast<RPS>(line[2] - 'X' + 1);
+		parsed.push_back(p);
+	}
+}
+
+/**
+ * @brief Parses the puzzle input for part two.
+ * 
+ * @param input   the puzzle input
+ * @param parsed  the input, parsed into a convenient data structure
+ * 
+*/
+void parseInputPartTwo(const std::vector<std::string> &input, std::vector<std::pair<RPS, Result>> &parsed){
+	for(const std::string &line : input){
+		std::pair<RPS, Result> p;
+		p.first = static_cast<RPS>(line[0] - 'A' + 1);
+		p.second = static_cast<Result>((line[2] - 'X') * 3);
+		parsed.push_back(p);
+	}
+}
+
+
+/**
  * @param p1  the move of the first player
  * @param p2  the move of the second player
  * 
@@ -72,14 +105,9 @@ RPS deduceMove(RPS p2, Result res){
 
 
 void partOne(const std::vector<std::string> &input){
-	// Converts the input strings to Rock, Paper, Scissors turns.
 	std::vector<std::pair<RPS, RPS>> turns;
-	for(const std::string &line : input){
-		std::pair<RPS, RPS> p;
-		p.first = static_cast<RPS>(line[0] - 'A' + 1);
-		p.second = static_cast<RPS>(line[2] - 'X' + 1);
-		turns.push_back(p);
-	}
+	parseInputPartOne(input, turns);
+
 
 	// Sums the turns.
 	unsigned long long sum = 0;
@@ -93,14 +121,9 @@ void partOne(const std::vector<std::string> &input){
 }
 
 void partTwo(const std::vector<std::string> &input){
-	// Converts the input strings to Rock, Paper, Scissors turns.
 	std::vector<std::pair<RPS, Result>> turns;
-	for(const std::string &line : input){
-		std::pair<RPS, Result> p;
-		p.first = static_cast<RPS>(line[0] - 'A' + 1);
-		p.second = static_cast<Result>((line[2] - 'X') * 3);
-		turns.push_back(p);
-	}
+	parseInputPartTwo(input, turns);
+
 
 	// Sums the turns.
 	unsigned long long sum = 0;
