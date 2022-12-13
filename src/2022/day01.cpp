@@ -10,19 +10,18 @@
 
 
 /**
- * @param input  the collection of input strings
+ * @brief Parses the puzzle input.
  * 
- * @return the input parsed as sums of the grouped integral types.
+ * @param input   the puzzle input
+ * @param parsed  the input, parsed into a convenient data structure
  * 
 */
-std::vector<unsigned long long> parseElves(const std::vector<std::string> &input){
-	std::vector<unsigned long long> elves;
-
+void parseInput(const std::vector<std::string> &input, std::vector<unsigned long long> &parsed){
 	// Sums up the calories by elves.
 	unsigned long long totalForOne = 0;
 	for(const std::string &line : input){
 		if(line == ""){
-			elves.push_back(totalForOne);
+			parsed.push_back(totalForOne);
 			totalForOne = 0;
 		} else{
 			totalForOne += std::stoi(line);	
@@ -30,15 +29,14 @@ std::vector<unsigned long long> parseElves(const std::vector<std::string> &input
 	}
 
 	// Sorts the calories in descending order.
-	std::sort(elves.begin(), elves.end(), std::greater<>());
-
-	return elves;
+	std::sort(parsed.begin(), parsed.end(), std::greater<>());
 }
 
 
 void partOne(const std::vector<std::string> &input){
-	// Parses the input.
-	std::vector<unsigned long long> elves = parseElves(input);
+	std::vector<unsigned long long> elves;
+	parseInput(input, elves);
+
 
 	// Gets the maximum element from the vector.
 	unsigned long long maximum = elves[0];
@@ -48,8 +46,9 @@ void partOne(const std::vector<std::string> &input){
 }
 
 void partTwo(const std::vector<std::string> &input){
-	// Parses the input.
-	std::vector<unsigned long long> elves = parseElves(input);
+	std::vector<unsigned long long> elves;
+	parseInput(input, elves);
+
 
 	// Sums the greatest three elements from the vector.
 	unsigned long long sum = elves[0] + elves[1] + elves[2];
