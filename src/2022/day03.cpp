@@ -20,6 +20,7 @@
  * 
 */
 void parseInputPartOne(const std::vector<std::string> &input, std::vector<std::pair<std::set<char>, std::set<char>>> &parsed){
+	// Separates each line (rucksack) into two compartments.
 	for(const std::string &line : input){
 		unsigned int midpoint = line.size() / 2;
 		std::string str1 = line.substr(0, midpoint);
@@ -40,6 +41,7 @@ void parseInputPartOne(const std::vector<std::string> &input, std::vector<std::p
  * 
 */
 void parseInputPartTwo(const std::vector<std::string> &input, std::vector<std::vector<std::set<char>>> &parsed){
+	// Constructs sets of characters representing the rucksacks.
 	for(unsigned int i = 0; i < input.size() / 3; ++i){
 		std::string str1 = input[3 * i];
 		std::set<char> c1(str1.begin(), str1.end());

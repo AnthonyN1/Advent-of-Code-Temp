@@ -58,6 +58,7 @@ class Range{
  * 
 */
 void parseInput(const std::vector<std::string> &input, std::vector<std::pair<Range, Range>> &parsed){
+	// Separates each line into two ranges.
 	for(const std::string &line : input){
 		std::vector<std::string> pairs = Utils::split(line, ",");
 
