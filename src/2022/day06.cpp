@@ -10,6 +10,18 @@
 
 
 /**
+ * @brief Parses the puzzle input.
+ * 
+ * @param input   the puzzle input
+ * @param parsed  the input, parsed into a convenient data structure
+ * 
+*/
+void parseInput(const std::vector<std::string> &input, std::string &parsed){
+	parsed = input[0];
+}
+
+
+/**
  * @param buffer  the buffer of characters to check
  * @param start   the starting index of the potential marker
  * @param end     one past the ending index of the potential marker
@@ -27,7 +39,9 @@ bool allDistinct(const std::string &buffer, unsigned int start, unsigned int end
 
 
 void partOne(const std::vector<std::string> &input){
-	std::string buffer = input[0];
+	std::string buffer;
+	parseInput(input, buffer);
+
 
 	// Loops through the input until a marker is found.
 	unsigned int marker = 0;
@@ -43,7 +57,9 @@ void partOne(const std::vector<std::string> &input){
 }
 
 void partTwo(const std::vector<std::string> &input){
-	std::string buffer = input[0];
+	std::string buffer;
+	parseInput(input, buffer);
+	
 
 	// Loops through the input until a marker is found.
 	unsigned int marker = 0;
