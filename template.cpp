@@ -9,6 +9,18 @@
 
 
 /**
+ * @brief Parses the puzzle input.
+ * 
+ * @param input   the puzzle input
+ * @param parsed  the input, parsed into a convenient data structure
+ * 
+*/
+void parseInput(const std::vector<std::string> &input, /* */ &parsed){
+	return;
+}
+
+
+/**
  * @brief Helper function.
  * 
  * @param abc  param 1
