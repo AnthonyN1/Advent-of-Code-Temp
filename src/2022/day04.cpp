@@ -11,6 +11,10 @@
 #include "../../includes/utils.h"
 
 
+/**
+ * @brief A subset of the real line with non-negative integer endpoints.
+ * 
+*/
 class Range{
 	public:
 		//==================================================//
