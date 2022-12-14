@@ -48,6 +48,9 @@ template <class V> std::set<V> Graph<V>::getVertices() const {
 
 
 template <class V> void Graph<V>::addEdge(const V &v1, const V &v2, long long w){
+	addVertex(v1);
+	addVertex(v2);
+
 	adjList_[v1].insert(v2);
 	weights_[std::make_pair(v1, v2)] = w;
 }
