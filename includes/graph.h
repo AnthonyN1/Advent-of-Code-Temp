@@ -23,6 +23,16 @@ template <class V> class Graph{
 		//                     Accessors                    //
 		//==================================================//
 		/**
+		 * @brief Calculates distances (ignoring edge weights) between vertices using BFS.
+		 * 
+		 * @param start   the label of the start vertex
+		 * 
+		 * @return a map associating vertex labels to the distance between them and the start vertex.
+		 * 
+		*/
+		std::map<V, unsigned int> bfs(const V &start) const;
+
+		/**
 		 * @return a set of the vertex labels in the graph.
 		 * 
 		*/
