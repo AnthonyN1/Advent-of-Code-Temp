@@ -35,4 +35,4 @@ day_files="src/$1/day${padded_day}.cpp"
 test_file="inputs/$1/day${padded_day}.txt"
 
 # Compiles and runs the program.
-g++ -g $day_files main.cpp "includes/aoc.a" -o main.exe -Wall -Wextra && ./main.exe $test_file $3
+g++ -g $day_files main.cpp "includes/aoc.a" -o main.exe -Wall -Wextra -std=c++17 && ./main.exe $test_file $3
